@@ -1,8 +1,10 @@
-﻿using UnityEngine;
+﻿﻿using UnityEngine;
 using System.Collections;
 
 public class Controller : MonoBehaviour
 {
+    public float lowForceX;
+    public float lowForceY;
     public float forceX;
     public float forceY;
 
@@ -11,8 +13,11 @@ public class Controller : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && !isJumping)
+        if (Input.GetMouseButtonDown(1) && !isJumping)
             Jump();
+
+        if (Input.GetMouseButtonDown(0) && !isJumping)
+            BigJump();
 
         if (isJumping && rotation < 180)
             Rotate();
@@ -23,6 +28,12 @@ public class Controller : MonoBehaviour
     {
         isJumping = true;
         rotation = 0;
+        GetComponent<Rigidbody2D>().AddForce(new Vector2(lowForceX, lowForceY), ForceMode2D.Impulse);
+    }
+    void BigJump()
+    {
+        isJumping = true;
+        rotation = 90;
         GetComponent<Rigidbody2D>().AddForce(new Vector2(forceX, forceY), ForceMode2D.Impulse);
     }
     void Rotate()
