@@ -7,22 +7,40 @@ public class Controller : MonoBehaviour
     public float forceY;
 
     bool isJumping = false;
+    float rotation;
 
     void Update()
     {
         if (Input.GetMouseButtonDown(0) && !isJumping)
-        {
-            isJumping = true;
-            GetComponent<Rigidbody2D>().AddForce(new Vector2(forceX, forceY), ForceMode2D.Impulse);
-        }
+            Jump();
+
+        if (isJumping && rotation < 180)
+            Rotate();
+    }
+
+
+    void Jump()
+    {
+        isJumping = true;
+        rotation = 0;
+        GetComponent<Rigidbody2D>().AddForce(new Vector2(forceX, forceY), ForceMode2D.Impulse);
+    }
+    void Rotate()
+    {
+        rotation += 9f;
+        transform.rotation = Quaternion.AngleAxis(rotation, Vector3.back);
     }
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if(col.gameObject.tag == "Floor" && isJumping)
+        if (col.gameObject.tag == "Floor" && isJumping)
         {
             isJumping = false;
-            transform.position = new Vector2(col.gameObject.transform.position.x + 0.08f, transform.position.y);
+
+            //Zeruj prędkość
+            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            //Ustaw gracza na środku pola
+            transform.position = new Vector2(col.gameObject.transform.position.x + 0.51f, transform.position.y);
         }
     }
 }
