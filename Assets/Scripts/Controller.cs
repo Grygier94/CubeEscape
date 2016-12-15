@@ -9,17 +9,21 @@ public class Controller : MonoBehaviour
     public float forceY;
 
     bool isJumping = false;
+    bool isJumpingFar = false;
     float rotation;
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(1) && !isJumping)
+        if (Input.GetMouseButtonDown(1) && !isJumping && !isJumpingFar)
             Jump();
 
-        if (Input.GetMouseButtonDown(0) && !isJumping)
+        if (Input.GetMouseButtonDown(0) && !isJumping && !isJumpingFar)
             BigJump();
 
-        if (isJumping && rotation < 180)
+        if (isJumpingFar && rotation < 180)
+            Rotate();
+
+        if (isJumping && rotation < 90)
             Rotate();
     }
 
@@ -32,8 +36,8 @@ public class Controller : MonoBehaviour
     }
     void BigJump()
     {
-        isJumping = true;
-        rotation = 90;
+        isJumpingFar = true;
+        rotation = 0;
         GetComponent<Rigidbody2D>().AddForce(new Vector2(forceX, forceY), ForceMode2D.Impulse);
     }
     void Rotate()
@@ -47,6 +51,7 @@ public class Controller : MonoBehaviour
         if (col.gameObject.tag == "Floor" && isJumping)
         {
             isJumping = false;
+            isJumpingFar = false;
 
             //Zeruj prędkość
             GetComponent<Rigidbody2D>().velocity = Vector2.zero;
