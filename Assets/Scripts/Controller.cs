@@ -17,12 +17,14 @@ public class Controller : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && !isJumping)
         {
             isJumping = true;
+            isWalking = true;
             GetComponent<Rigidbody2D>().AddForce(new Vector2(forceX, forceY), ForceMode2D.Impulse);
 
         }
         if (Input.GetMouseButtonDown(1) && !isWalking)
         {
             isWalking = true;
+            isJumping = true;
             GetComponent<Rigidbody2D>().AddForce(new Vector2(forceX1, forceX2), ForceMode2D.Impulse);
 
         }
@@ -33,10 +35,12 @@ public class Controller : MonoBehaviour
         if(col.gameObject.tag == "Floor" && isJumping)
         {
             isJumping = false;
+            isWalking = false;
             //transform.position = new Vector2(col.gameObject.transform.position.x + 0.08f, transform.position.y);
         }
         if (col.gameObject.tag == "Floor" && isWalking)
         {
+            isJumping = false;
             isWalking = false;  
         }
     }
