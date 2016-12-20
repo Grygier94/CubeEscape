@@ -15,25 +15,27 @@ public class FloorGenerator : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         floor = GameObject.FindGameObjectWithTag("Floor").transform;
 
-        this.random = new System.Random();
-        InvokeRepeating("GenerateCube", 0, 0.3f);
+        this.random = new System.Random();    
+    }
+
+    void Update()
+    {
+        if (4.533F + distanceForNewCube < player.position.x + 10f)
+            GenerateCube();
     }
 
     void GenerateCube()
     {
-        if (4.533F + distanceForNewCube < player.position.x + 10f)
+        if (FloorShouldBeCreated())
         {
-            if (FloorShouldBeCreated())
-            {
-                GenerateFloorCube();
-                justCreatedCube = true;
-            }
-            else
-            {
-                justCreatedCube = false;
-            }
-            distanceForNewCube++;
+            GenerateFloorCube();
+            justCreatedCube = true;
         }
+        else
+        {
+            justCreatedCube = false;
+        }
+        distanceForNewCube++;
     }
     bool FloorShouldBeCreated()
     {
