@@ -48,7 +48,7 @@ public class Controller : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.tag == "Floor" && (isJumping || isJumpingFar))
+        if (col.gameObject.tag == "FloorCube" && (isJumping || isJumpingFar))
         {
             isJumping = false;
             isJumpingFar = false;
