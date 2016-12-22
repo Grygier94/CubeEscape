@@ -58,5 +58,10 @@ public class Controller : MonoBehaviour
             //Ustaw gracza na środku pola
             transform.position = new Vector2(col.gameObject.transform.position.x + 0.51f, transform.position.y);
         }
+
+        if (col.gameObject.tag == "Obstacle")
+        {
+            GameObject.FindGameObjectWithTag("MainCamera").GetComponent<GameManager>().GameOver();
+        }
     }
 }
