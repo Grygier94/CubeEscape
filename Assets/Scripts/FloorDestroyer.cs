@@ -3,19 +3,12 @@ using System.Collections;
 
 public class FloorDestroyer : MonoBehaviour
 {
-
-    Transform player;
     float timeToDestroy = 0.5f;
     bool touched;
 
-    void Start()
-    {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-    }
-
     void Update()
     {
-        if (transform.position.x < player.position.x - 5f || timeToDestroy <= 0)
+        if (timeToDestroy <= 0)
             Destroy(gameObject);
 
         if(touched)
