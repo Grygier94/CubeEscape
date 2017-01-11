@@ -12,10 +12,11 @@ public class GameManager : MonoBehaviour {
 	void Update () {
         if (player.position.y < -10f)
             GameOver();
-	}
+    }
 
     public void GameOver()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(4);
     }
+
 }
