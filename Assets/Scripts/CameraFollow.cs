@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CameraFollowScript : MonoBehaviour {
+public class CameraFollow : MonoBehaviour {
 
     public Transform player;
 

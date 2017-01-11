@@ -56,12 +56,12 @@ public class Controller : MonoBehaviour
             //Zeruj prędkość
             GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             //Ustaw gracza na środku pola
-            transform.position = new Vector2(col.gameObject.transform.position.x + 0.51f, transform.position.y);
+            transform.position = new Vector2(col.gameObject.transform.position.x, transform.position.y);
         }
 
         if (col.gameObject.tag == "Obstacle")
         {
-            GameObject.FindGameObjectWithTag("MainCamera").GetComponent<GameManager>().GameOver();
+            GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().GameOver();
         }
     }
 }

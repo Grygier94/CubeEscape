@@ -44,7 +44,7 @@ public class FloorGenerator : MonoBehaviour
     void GenerateFloorCube()
     {
         GameObject cube = Instantiate(prefab);
-        cube.transform.position = new Vector3(4.533F + distanceForNewCube, -1.95F, 10);
+        cube.transform.position = new Vector3(4.533F + distanceForNewCube, -0.7F, 10);
         cube.transform.parent = floor;
     }
 }
