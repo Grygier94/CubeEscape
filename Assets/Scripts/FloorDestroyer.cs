@@ -3,16 +3,20 @@ using System.Collections;
 
 public class FloorDestroyer : MonoBehaviour
 {
+    public Sprite destroyedCube;
     float timeToDestroy = 0.5f;
     bool touched;
 
     void Update()
     {
-        if (timeToDestroy <= 0)
+        if (timeToDestroy <= 0 && GetComponent<Rigidbody2D>().isKinematic)
         {
-            //GetComponent<SpriteRenderer>().sprite = 
+            GetComponent<Rigidbody2D>().isKinematic = false;
+            GetComponent<SpriteRenderer>().sprite = destroyedCube;
         }
-            //Destroy(gameObject);
+
+        if(transform.position.y < -5.5f)
+            Destroy(gameObject);
 
         if(touched)
             timeToDestroy -= 0.01f;
