@@ -10,6 +10,7 @@ public class ObstacleGenerator : MonoBehaviour {
     private Transform obstacle;
 
 
+
     // Use this for initialization
     void Start () {
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -20,7 +21,7 @@ public class ObstacleGenerator : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (4.533F + distanceForNewObstacle < player.position.x + 10f)
+        if (1.513F + distanceForNewObstacle < player.position.x + 10f)
             GenerateObstacle();
     }
     void GenerateObstacle()
@@ -28,16 +29,47 @@ public class ObstacleGenerator : MonoBehaviour {
         if(ObstacleShouldBeCreated())
         {
             GenerateObstaclePrefab();
+            justCreatedObstacle = true;
+            
+        }
+        else
+        {
+            justCreatedObstacle = false;
         }
         distanceForNewObstacle++;
     }
     bool ObstacleShouldBeCreated()
     {
-        return random.Next(2, 5) % 2 == 0;
+        return !justCreatedObstacle && random.Next(2, 11) % 3 == 0 && !gapIsAhead();
+    }
+    // TO DO
+    bool gapIsAhead()
+    {
+        GameObject cubeOnNextPosition = FindAt(new Vector3(3.533F , -0.7f,10));
+       // Debug.Log(cubeOnNextPosition);
+        return cubeOnNextPosition == null;
     }
     void GenerateObstaclePrefab()
     {
-        GameObject cube = Instantiate(prefab);
-        cube.transform.position = new Vector3(distanceForNewObstacle, 0.3F, 0);
+        GameObject obstacle = Instantiate(prefab);
+        obstacle.transform.position = new Vector3(3.513F + distanceForNewObstacle, 0.3F, 0);
     }
+
+    GameObject FindAt(Vector3 position) {
+        // get all colliders that intersect pos:
+        Collider[] cols = Physics.OverlapSphere(position, 50f);
+        // find the nearest one:
+        float distance = Mathf.Infinity;
+        GameObject nearest = null;
+        foreach (Collider col in cols){
+            Debug.Log(col);
+            // find the distance to pos:
+            float d = Vector3.Distance(position, col.transform.position);
+            if (d<distance){ // if closer...
+                distance = d; // save its distance... 
+                nearest = col.gameObject; // and its gameObject           
+     }
+   }
+   return nearest;
+ }
 }
