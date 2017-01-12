@@ -6,7 +6,8 @@ public class FloorGenerator : MonoBehaviour
     public GameObject prefab;
     private float distanceForNewCube = 0F;
     private System.Random random;
-    private bool justCreatedCube;
+    public bool justCreatedCube;
+    public bool justCreatedGap;
     private Transform player;
     private Transform floor;
 
@@ -30,10 +31,12 @@ public class FloorGenerator : MonoBehaviour
         {
             GenerateFloorCube();
             justCreatedCube = true;
+            justCreatedGap = false;
         }
         else
         {
             justCreatedCube = false;
+            justCreatedGap = true;
         }
         distanceForNewCube++;
     }
