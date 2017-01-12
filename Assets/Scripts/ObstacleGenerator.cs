@@ -38,6 +38,6 @@ public class ObstacleGenerator : MonoBehaviour {
     void GenerateObstaclePrefab()
     {
         GameObject cube = Instantiate(prefab);
-        cube.transform.position = new Vector3(1.0F + distanceForNewObstacle, -0.43F, 0);
+        cube.transform.position = new Vector3(distanceForNewObstacle, 0.3F, 0);
     }
 }

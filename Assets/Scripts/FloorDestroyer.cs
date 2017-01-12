@@ -9,7 +9,10 @@ public class FloorDestroyer : MonoBehaviour
     void Update()
     {
         if (timeToDestroy <= 0)
-            Destroy(gameObject);
+        {
+            //GetComponent<SpriteRenderer>().sprite = 
+        }
+            //Destroy(gameObject);
 
         if(touched)
             timeToDestroy -= 0.01f;
