@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class CenterArrow : MonoBehaviour {
 
-    float position = 100;
+    float position = 120;
 
 	void Update () {
         if (GetComponent<Image>().color.a <= 0.5f && GetComponent<RectTransform>().position.y > position)

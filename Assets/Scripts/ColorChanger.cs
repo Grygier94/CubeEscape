@@ -18,13 +18,12 @@ public class ColorChanger : MonoBehaviour {
             new Color[] { new Color(1f, 0.815f, 0.203f), new Color(1f, 0.298f, 0.231f), new Color(0f, 0.447f, 0.733f) },
             new Color[] { new Color(0.97f, 0.42f, 0f), new Color(0f, 0.352f, 0.372f), new Color(0f, 0.567f, 0.676f) },
             new Color[] { new Color(0.1f, 0.1f, 0.1f), new Color(0.29f, 0.30f, 0.30f), new Color(0.50f, 0.517f, 0.533f) },
-            new Color[] { new Color(0.8f, 0.4f, 0.23f), new Color(0.8f, 0.8f, 0.8f), new Color(0.6f, 0.6f, 0.6f) },
-            new Color[] { new Color(0.92f, 0.698f, 0f), new Color(0.796f, 0.172f, 0.098f), new Color(0.678f, 0.784f, 0.005f) },
+            new Color[] { new Color(0.152f, 0.454f, 0.627f), new Color(0.403f, 0.254f, 0.184f), new Color(0.054f, 0.058f, 0.066f) },
+            new Color[] { new Color(0.964f, 0.933f, 823f), new Color(0.258f, 0.494f, 0f), new Color(0.976f, 0.592f, 0.109f) },
             new Color[] { new Color(1f, 0.815f, 0.203f), new Color(0.56f, 0.764f, 0.921f), new Color(0.839f, 0.364f, 0.494f) }
         };
 
         int randomColor = (int)UnityEngine.Random.Range(0, 5.99f);
-        Debug.Log(randomColor);
         player.color = colors[randomColor][0];
         obstacle.color = floorCube.color = colors[randomColor][1];
         background.color = colors[randomColor][2];

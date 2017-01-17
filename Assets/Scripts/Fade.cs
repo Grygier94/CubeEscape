@@ -7,21 +7,19 @@ public class Fade : MonoBehaviour
 
     public bool partial;
     float time = 3.0f;
-
-    // Use this for initialization
-    void Start()
-    {
-
-    }
+    bool isPlaying = false;
 
     void Update()
     {
-        if (time >= 0)
+        if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
+            isPlaying = true;
+
+        if (time >= 0 && isPlaying)
         {
             time -= Time.deltaTime;
             return;
         }
-        else
+        else if(time < 0 && isPlaying)
         {
             if (partial)
             {
