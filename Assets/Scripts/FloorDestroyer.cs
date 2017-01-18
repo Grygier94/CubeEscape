@@ -15,10 +15,10 @@ public class FloorDestroyer : MonoBehaviour
             GetComponent<SpriteRenderer>().sprite = destroyedCube;
         }
 
-        if(transform.position.y < -5.5f)
+        if (transform.position.y < -5.5f)
             Destroy(gameObject);
 
-        if(touched)
+        if (touched)
             timeToDestroy -= 0.01f;
     }
 
