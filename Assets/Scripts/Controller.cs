@@ -1,8 +1,10 @@
-﻿﻿using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Controller : MonoBehaviour
 {
+    public Text scoreText;
     public float lowForceX;
     public float lowForceY;
     public float forceX;
@@ -50,6 +52,11 @@ public class Controller : MonoBehaviour
     {
         if (col.gameObject.tag == "FloorCube" && (isJumping || isJumpingFar))
         {
+            if (isJumping)
+                GameManager.score++;
+            else if (isJumpingFar)
+                GameManager.score += 2;
+            scoreText.text = GameManager.score.ToString();
             isJumping = false;
             isJumpingFar = false;
 

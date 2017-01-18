@@ -1,22 +1,85 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour {
+public class GameManager : MonoBehaviour
+{
 
-    Transform player;
-	void Start () {
-	    player = GameObject.FindGameObjectWithTag("Player").transform;
+    public static int score;
+    public Text scoreText;
+    public Image scoreBackground;
+    public GameObject gameOverScreen;
+    public Transform player;
+    public Image playBG;
+    public Image menuBG;
+
+    int gameOverAnimationState;
+    bool isGameOver = false;
+
+    void Start()
+    {
+        gameOverAnimationState = score = 0;
     }
-	
-	void Update () {
+
+    void Update()
+    {
         if (player.position.y < -10f)
             GameOver();
+        
+        if (isGameOver)
+        {
+            PlayGameOverAnimation();
+        }
+    }
+
+    public void PlayGameOverAnimation()
+    {
+        const float maxScaleY = 10.2f;
+        const float minScaleY = 10.2f;
+        const float maxScaleX = 4f;
+
+        if (scoreBackground.rectTransform.localScale.y < maxScaleY && gameOverAnimationState == 0)
+        {
+            if(scoreText.transform.position.y > -460)
+                scoreText.transform.position -= new Vector3(0, 22f);
+            if(playBG.rectTransform.localScale.x < 3)
+            {
+                playBG.rectTransform.localScale += new Vector3(0.5f,0);
+                menuBG.rectTransform.localScale += new Vector3(0.5f,0);
+            }
+            scoreBackground.rectTransform.localScale += new Vector3(0, 1f);
+        }
+
+        else if (scoreBackground.rectTransform.localScale.y >= maxScaleY && gameOverAnimationState == 0)
+            gameOverAnimationState = 1;
+
+        else if (scoreBackground.rectTransform.localScale.y >= minScaleY && gameOverAnimationState == 1)
+            scoreBackground.rectTransform.localScale -= new Vector3(0, 0.5f);
+
+        else if (scoreBackground.rectTransform.localScale.y < minScaleY && gameOverAnimationState == 1)
+            gameOverAnimationState = 2;
+
+        else if (scoreBackground.rectTransform.localScale.x < maxScaleX && gameOverAnimationState == 2)
+        {
+            scoreText.fontSize = 100;
+            scoreText.text = "Score\n" + score;
+            scoreBackground.rectTransform.localScale += new Vector3(0.4f, 0);
+        }
+
+        else if (scoreBackground.rectTransform.localScale.x >= maxScaleX && gameOverAnimationState == 2)
+            gameOverAnimationState = 3;
+
+        else if(gameOverAnimationState == 3)
+        {
+            gameOverAnimationState = 4;
+            gameOverScreen.SetActive(true);
+        }
     }
 
     public void GameOver()
     {
-        SceneManager.LoadScene(4);
+        isGameOver = true;
     }
 
 }

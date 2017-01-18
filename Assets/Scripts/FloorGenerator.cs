@@ -8,6 +8,7 @@ public class FloorGenerator : MonoBehaviour
     private System.Random random;
     public bool justCreatedCube;
     public bool justCreatedGap;
+
     private Transform player;
     private Transform floor;
 
