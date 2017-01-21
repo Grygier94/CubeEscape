@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class FloorDestroyer : MonoBehaviour
+public class TerrainDestroyer : MonoBehaviour
 {
     public Sprite destroyedCube;
     float timeToDestroy = 0.5f;
