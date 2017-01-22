@@ -7,14 +7,12 @@ public class ObstacleGenerator : MonoBehaviour {
     private System.Random random;
     private bool justCreatedObstacle;
     private Transform player;
-    private Transform obstacle;
 
 
 
     // Use this for initialization
     void Start () {
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        obstacle = GameObject.FindGameObjectWithTag("Obstacle").transform;
 
         this.random = new System.Random();
     }

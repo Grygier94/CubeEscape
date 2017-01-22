@@ -28,7 +28,13 @@ public class GameManager : MonoBehaviour
     {
         if (!isGameOver && player.position.y < 0.15f)
             GameOver();
-        
+
+        if (player.position.y < -6f)
+        {
+            Destroy(player.gameObject.GetComponent<Rigidbody2D>());
+        }
+            
+
         if (isGameOver)
         {
             PlayGameOverAnimation();

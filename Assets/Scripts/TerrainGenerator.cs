@@ -16,7 +16,6 @@ public class TerrainGenerator : MonoBehaviour
     private bool justCreatedCube;
     private bool justCreatedObstacle;
     private bool createdFloorInLastMove;
-    private bool createdObstacleInLastMove;
 
     private Transform player;
     private Transform floor;
@@ -66,7 +65,6 @@ public class TerrainGenerator : MonoBehaviour
     /*=============================OBSTACLE GENERATION================================*/
     void GenerateObstacle()
     {
-        createdObstacleInLastMove = justCreatedObstacle;
         if (ObstacleShouldBeCreated())
         {
             GenerateObstaclePrefab();
