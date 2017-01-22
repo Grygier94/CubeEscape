@@ -3,9 +3,15 @@ using System.Collections;
 
 public class TerrainGenerator : MonoBehaviour
 {
+    private const float OBSTACLE_Y_POSTION_HIGH = 1.9F;
+    private const float OBSTACLE_Y_POSTION_MID = 0.3F;
+    private const float OBSTACLE_Y_POSTION_LOW = -0.6F;
+
     public GameObject cubePrefab;
     public GameObject ObstaclePrefab;
     private float distanceForObject = 0F;
+    private float obstacleYPosition = 0.3F;
+
     private System.Random random;
     private bool justCreatedCube;
     private bool justCreatedObstacle;
@@ -86,6 +92,28 @@ public class TerrainGenerator : MonoBehaviour
     void GenerateObstaclePrefab()
     {
         GameObject obstacle = Instantiate(ObstaclePrefab);
-        obstacle.transform.position = new Vector3(4.513F + distanceForObject, 0.3F, 0);
+        if (justCreatedCube)
+        {
+            if (positionShouldBeHigh())
+                obstacleYPosition = OBSTACLE_Y_POSTION_HIGH;
+            else
+                obstacleYPosition = OBSTACLE_Y_POSTION_MID;
+        }
+        else
+        {
+            if (positionShouldBeLow())
+                obstacleYPosition = OBSTACLE_Y_POSTION_LOW;
+            else
+                obstacleYPosition = OBSTACLE_Y_POSTION_MID;
+        }
+        obstacle.transform.position = new Vector3(4.513F + distanceForObject, obstacleYPosition, 0);
+    }
+    bool positionShouldBeHigh()
+    {
+        return random.Next(1, 3) % 2 == 0;
+    }
+    bool positionShouldBeLow()
+    {
+        return random.Next(1, 3) % 2 == 0;
     }
 }
