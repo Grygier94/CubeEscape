@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public Transform player;
     public Image playBG;
     public Image menuBG;
+    public GameObject instructions;
 
     int gameOverAnimationState;
     bool isGameOver = false;
@@ -24,7 +25,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (player.position.y < -10f)
+        if (!isGameOver && player.position.y < 0.15f)
             GameOver();
         
         if (isGameOver)
@@ -39,11 +40,12 @@ public class GameManager : MonoBehaviour
         const float minScaleY = 10.2f;
         const float maxScaleX = 4f;
 
+        if (scoreText.rectTransform.localPosition.y > -500)
+            scoreText.rectTransform.localPosition -= new Vector3(0, 30f);
+
         if (scoreBackground.rectTransform.localScale.y < maxScaleY && gameOverAnimationState == 0)
         {
-            if(scoreText.transform.position.y > -460)
-                scoreText.transform.position -= new Vector3(0, 22f);
-            if(playBG.rectTransform.localScale.x < 3)
+            if (playBG.rectTransform.localScale.x < 3)
             {
                 playBG.rectTransform.localScale += new Vector3(0.5f,0);
                 menuBG.rectTransform.localScale += new Vector3(0.5f,0);
@@ -80,6 +82,8 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         isGameOver = true;
+        Destroy(player.GetComponent<Controller>());
+        Destroy(instructions);
     }
 
 }
