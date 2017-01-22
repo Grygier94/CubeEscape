@@ -15,6 +15,7 @@ public class TerrainDestroyer : MonoBehaviour
         if (timeToDestroy <= 0 && GetComponent<Rigidbody2D>().isKinematic)
         {
             GetComponent<Rigidbody2D>().isKinematic = false;
+            Destroy(GetComponent<BoxCollider2D>());
             GetComponent<SpriteRenderer>().sprite = destroyedCube;
         }
 

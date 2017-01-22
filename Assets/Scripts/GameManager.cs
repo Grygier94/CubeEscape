@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public Image playBG;
     public Image menuBG;
     public GameObject instructions;
+    public GameObject mainCamera;
 
     int gameOverAnimationState;
     bool isGameOver = false;
@@ -83,6 +84,7 @@ public class GameManager : MonoBehaviour
     {
         isGameOver = true;
         Destroy(player.GetComponent<Controller>());
+        Destroy(mainCamera.GetComponent<CameraFollow>());
         Destroy(instructions);
     }
 

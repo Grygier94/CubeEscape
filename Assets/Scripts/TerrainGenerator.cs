@@ -3,7 +3,7 @@ using System.Collections;
 
 public class TerrainGenerator : MonoBehaviour
 {
-    private const float OBSTACLE_Y_POSTION_HIGH = 1.9F;
+    private const float OBSTACLE_Y_POSTION_HIGH = 2F;
     private const float OBSTACLE_Y_POSTION_MID = 0.3F;
     private const float OBSTACLE_Y_POSTION_LOW = -0.6F;
 
@@ -20,13 +20,11 @@ public class TerrainGenerator : MonoBehaviour
 
     private Transform player;
     private Transform floor;
-    private Transform obstacle;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         floor = GameObject.FindGameObjectWithTag("Floor").transform;
-        obstacle = GameObject.FindGameObjectWithTag("Obstacle").transform;
 
         this.random = new System.Random();
     }

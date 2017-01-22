@@ -68,6 +68,10 @@ public class Controller : MonoBehaviour
 
         if (col.gameObject.tag == "Obstacle")
         {
+            Destroy(GetComponent<BoxCollider2D>());
+            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            GetComponent<Rigidbody2D>().AddForce(new Vector2(-10f, 15f), ForceMode2D.Impulse);
+            GetComponent<Rigidbody2D>().AddTorque(10f, ForceMode2D.Impulse);
             GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().GameOver();
         }
     }
