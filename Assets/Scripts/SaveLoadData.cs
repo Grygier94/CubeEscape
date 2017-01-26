@@ -7,7 +7,6 @@ using System;
 [Serializable]
 class GameData
 {
-    public int lastScore;
     public int bestScore;
 }
 
@@ -20,7 +19,7 @@ public class SaveLoadData : MonoBehaviour {
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + GAME_DATA_FILE_NAME);
         GameData data = new GameData();
-        //data.bestScore = ;
+        data.bestScore = GameManager.bestScore;
 
         bf.Serialize(file, data);
         file.Close();
@@ -35,7 +34,7 @@ public class SaveLoadData : MonoBehaviour {
             GameData data = (GameData)bf.Deserialize(file);
             file.Close();
 
-            //  = data.lastScore;
+            GameManager.bestScore = data.bestScore;
         }
     }
 }

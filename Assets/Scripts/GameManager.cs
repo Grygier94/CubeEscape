@@ -7,7 +7,9 @@ public class GameManager : MonoBehaviour
 {
 
     public static int score;
+    public static int bestScore;
     public Text scoreText;
+    public Text bestScoreText;
     public Image scoreBackground;
     public GameObject gameOverScreen;
     public Transform player;
@@ -92,6 +94,12 @@ public class GameManager : MonoBehaviour
         Destroy(player.GetComponent<Controller>());
         Destroy(mainCamera.GetComponent<CameraFollow>());
         Destroy(instructions);
+        if(score > bestScore)
+        {
+            bestScore = score;
+            SaveLoadData.Save();
+        }
+        bestScoreText.text = string.Format("Best\nScore\n{0}", bestScore);
     }
 
 }
