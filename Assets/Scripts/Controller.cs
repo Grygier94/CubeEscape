@@ -16,10 +16,10 @@ public class Controller : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(1) && !isJumping && !isJumpingFar)
+        if (Input.GetMouseButtonDown(0) && Input.mousePosition.x > Screen.width / 2 && Input.mousePosition.y < Screen.height * 0.75f && !isJumping && !isJumpingFar)
             Jump();
 
-        if (Input.GetMouseButtonDown(0) && !isJumping && !isJumpingFar)
+        if (Input.GetMouseButtonDown(0) && Input.mousePosition.x <= Screen.width / 2 && Input.mousePosition.y < Screen.height * 0.25f && !isJumping && !isJumpingFar)
             BigJump();
 
         if (isJumpingFar && rotation < 180)
