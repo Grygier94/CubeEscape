@@ -34,35 +34,40 @@ public class TerrainDestroyer : MonoBehaviour
 
     void SetLevel()
     {
-        if (GameManager.score > 10 && level == 0)
+        if (GameManager.score > 15 && level == 0)
         {
             timeToDestroy = 0.4f;
             level = 1;
         }
-        if (GameManager.score > 20 && level == 1)
+        if (GameManager.score > 30 && level == 1)
         {
             timeToDestroy = 0.3f;
             level = 2;
         }
-        if (GameManager.score > 30 && level == 2)
+        if (GameManager.score > 45 && level == 2)
         {
             timeToDestroy = 0.2f;
             level = 3;
         }
-        if (GameManager.score > 40 && level == 3)
+        if (GameManager.score > 60 && level == 3)
         {
             timeToDestroy = 0.1f;
             level = 4;
         }
-        if (GameManager.score > 50 && level == 4)
+        if (GameManager.score > 80 && level == 4)
         {
             timeToDestroy = 0.08f;
             level = 5;
         }
-        if (GameManager.score > 75 && level == 5)
+        if (GameManager.score > 100 && level == 5)
+        {
+            timeToDestroy = 0.065f;
+            level = 6;
+        }
+        if (GameManager.score > 125 && level == 6)
         {
             timeToDestroy = 0.05f;
-            level = 6;
+            level = 7;
         }
     }
 }

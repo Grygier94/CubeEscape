@@ -9,6 +9,8 @@ public enum Hand
 public class ScaleAnimation : MonoBehaviour
 {
     public Hand hand;
+    public float minSize;
+    public float maxSize;
 
     bool isGrowing = false;
     float growingSpeedX = 0.01f;
@@ -25,10 +27,10 @@ public class ScaleAnimation : MonoBehaviour
 
     void Update()
     {
-        if (rectTransform.localScale.y < 0.5f && !isGrowing)
+        if (rectTransform.localScale.y < minSize && !isGrowing)
             isGrowing = true;
 
-        if (rectTransform.localScale.y > 0.6f && isGrowing)
+        if (rectTransform.localScale.y > maxSize && isGrowing)
             isGrowing = false;
 
         if (isGrowing)

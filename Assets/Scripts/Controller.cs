@@ -2,6 +2,8 @@
 using System.Collections;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(AudioSource))]
 public class Controller : MonoBehaviour
 {
     public Text scoreText;
@@ -9,6 +11,9 @@ public class Controller : MonoBehaviour
     public float lowForceY;
     public float forceX;
     public float forceY;
+
+    public AudioSource audioJump;
+    public AudioSource audioLand;
 
     bool isJumping = false;
     bool isJumpingFar = false;
@@ -23,10 +28,10 @@ public class Controller : MonoBehaviour
             BigJump();
 
         if (isJumpingFar && rotation < 180)
-            Rotate();
+            Rotate(9f);
 
         if (isJumping && rotation < 90)
-            Rotate();
+            Rotate(5f);
     }
 
 
@@ -35,16 +40,18 @@ public class Controller : MonoBehaviour
         isJumping = true;
         rotation = 0;
         GetComponent<Rigidbody2D>().AddForce(new Vector2(lowForceX, lowForceY), ForceMode2D.Impulse);
+        audioJump.Play();
     }
     void BigJump()
     {
         isJumpingFar = true;
         rotation = 0;
         GetComponent<Rigidbody2D>().AddForce(new Vector2(forceX, forceY), ForceMode2D.Impulse);
+        audioJump.Play();
     }
-    void Rotate()
+    void Rotate(float speed)
     {
-        rotation += 9f;
+        rotation += speed;
         transform.rotation = Quaternion.AngleAxis(rotation, Vector3.back);
     }
 
@@ -52,6 +59,7 @@ public class Controller : MonoBehaviour
     {
         if (col.gameObject.tag == "FloorCube" && (isJumping || isJumpingFar))
         {
+            audioLand.Play();
             if (isJumping)
                 GameManager.score++;
             else if (isJumpingFar)

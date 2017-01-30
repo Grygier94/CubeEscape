@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
 
     int gameOverAnimationState;
     bool isGameOver = false;
+    bool exitConfirmed = false;
 
     void Start()
     {
@@ -28,19 +29,27 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (!isGameOver && player.position.y < 0.15f)
+        if (!isGameOver && player.position.y < 0.1f)
             GameOver();
 
         if (player.position.y < -6f)
         {
             Destroy(player.gameObject.GetComponent<Rigidbody2D>());
         }
-            
 
         if (isGameOver)
         {
             PlayGameOverAnimation();
         }
+
+        if (Input.GetMouseButtonDown(0) && exitConfirmed)
+            exitConfirmed = false;
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+            exitConfirmed = true;
+
+        if (Input.GetKeyDown(KeyCode.Escape) && exitConfirmed)
+            SceneManager.LoadScene(0);
     }
 
     public void PlayGameOverAnimation()
