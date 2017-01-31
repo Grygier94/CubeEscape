@@ -12,13 +12,15 @@ public class MenuManager : MonoBehaviour {
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && exitConfirmed)
-            exitConfirmed = false;
-
         if (Input.GetKeyDown(KeyCode.Escape))
-            exitConfirmed = true;
+        {
+            if (exitConfirmed)
+                Application.Quit();
+            else
+                exitConfirmed = true;
+        }
 
-        if (Input.GetKeyDown(KeyCode.Escape) && exitConfirmed)
-            Application.Quit();
+        if (Input.touchCount > 0 && exitConfirmed)
+            exitConfirmed = false;
     }
 }

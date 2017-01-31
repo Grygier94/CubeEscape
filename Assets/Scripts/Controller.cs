@@ -31,7 +31,7 @@ public class Controller : MonoBehaviour
             Rotate(9f);
 
         if (isJumping && rotation < 90)
-            Rotate(5f);
+            Rotate(7f);
     }
 
 
@@ -70,6 +70,8 @@ public class Controller : MonoBehaviour
 
             //Zeruj prędkość
             GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            //Zeruj rotacje
+            transform.rotation = new Quaternion(0,0,0,0);
             //Ustaw gracza na środku pola
             transform.position = new Vector2(col.gameObject.transform.position.x, transform.position.y);
         }

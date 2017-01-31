@@ -54,12 +54,12 @@ public class TerrainDestroyer : MonoBehaviour
             timeToDestroy = 0.1f;
             level = 4;
         }
-        if (GameManager.score > 80 && level == 4)
+        if (GameManager.score > 75 && level == 4)
         {
             timeToDestroy = 0.08f;
             level = 5;
         }
-        if (GameManager.score > 100 && level == 5)
+        if (GameManager.score > 90 && level == 5)
         {
             timeToDestroy = 0.065f;
             level = 6;
