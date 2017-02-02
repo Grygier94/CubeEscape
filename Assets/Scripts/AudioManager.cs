@@ -10,7 +10,6 @@ public class AudioManager : MonoBehaviour {
 
     void Start()
     {
-
         if (PlayerPrefs.GetInt("isMute") == 1)
             Mute();
     }

@@ -8,7 +8,6 @@ public class BackToMenu : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             SceneManager.LoadScene(0);
-
         }
     }
 }
