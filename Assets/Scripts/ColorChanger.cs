@@ -30,7 +30,6 @@ public class ColorChanger : MonoBehaviour {
         background.color = colors[randomColor][2];
 
         UpdateColorOfExistingFloor(randomColor);
-        UpdateColorOfExistingObstacles(randomColor);
     }
 
     void UpdateColorOfExistingFloor(int colorNumber)
@@ -39,15 +38,6 @@ public class ColorChanger : MonoBehaviour {
         foreach (SpriteRenderer child in allChildren)
         {
             child.color = colors[colorNumber][1];
-        }
-    }
-
-    void UpdateColorOfExistingObstacles(int colorNumber)
-    {
-        GameObject[] obstacles = GameObject.FindGameObjectsWithTag("Obstacle");
-        foreach (GameObject obstacle in obstacles)
-        {
-            obstacle.GetComponent<SpriteRenderer>().color = colors[colorNumber][1];
         }
     }
 }

@@ -14,6 +14,7 @@ public class Controller : MonoBehaviour
 
     public AudioSource audioJump;
     public AudioSource audioLand;
+    public AudioSource audioCollision;
 
     bool isJumping = false;
     bool isJumpingFar = false;
@@ -78,6 +79,7 @@ public class Controller : MonoBehaviour
 
         if (col.gameObject.tag == "Obstacle")
         {
+            audioCollision.Play();
             Destroy(GetComponent<BoxCollider2D>());
             GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             GetComponent<Rigidbody2D>().AddForce(new Vector2(-10f, 15f), ForceMode2D.Impulse);

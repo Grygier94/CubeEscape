@@ -89,6 +89,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        GetComponent<AudioSource>().Play();
         isGameOver = true;
         Destroy(player.GetComponent<Controller>());
         Destroy(mainCamera.GetComponent<CameraFollow>());
