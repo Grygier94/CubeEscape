@@ -24,6 +24,7 @@ public class ColorChanger : MonoBehaviour {
             new Color[] { new Color(1f, 0.815f, 0.203f), new Color(0.56f, 0.764f, 0.921f), new Color(0.839f, 0.364f, 0.494f) }
         };
 
+        // losuj od 0 do 5
         int randomColor = (int)UnityEngine.Random.Range(0, 5.99f);
         player.color = colors[randomColor][0];
         obstacle.color = floorCube.color = colors[randomColor][1];

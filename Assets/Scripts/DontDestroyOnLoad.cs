@@ -3,6 +3,7 @@ using System.Collections;
 
 public class DontDestroyOnLoad : MonoBehaviour {
 
+
     private static DontDestroyOnLoad instance = null;
     public static DontDestroyOnLoad Instance
     {

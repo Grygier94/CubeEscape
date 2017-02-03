@@ -10,6 +10,7 @@ public class AudioManager : MonoBehaviour {
 
     void Start()
     {
+        //Pobranie wartości klucza o nazwie "isMute" i sprawdzenie czy jest równa 1
         if (PlayerPrefs.GetInt("isMute") == 1)
             Mute();
     }

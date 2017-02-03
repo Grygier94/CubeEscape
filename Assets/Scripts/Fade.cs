@@ -11,7 +11,7 @@ public class Fade : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(0))
             isPlaying = true;
 
         if (time >= 0 && isPlaying)

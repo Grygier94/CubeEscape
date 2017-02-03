@@ -10,6 +10,7 @@ public class MenuManager : MonoBehaviour {
         SaveLoadData.Load();
 	}
 
+    //Wyjdz po dwukrotnym wcisnienciu back buttona
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))

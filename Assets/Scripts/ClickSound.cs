@@ -6,15 +6,19 @@ using UnityEngine.UI;
 public class ClickSound : MonoBehaviour {
 
     public AudioClip sound;
+
+    // readonly
     Button button { get { return GetComponent<Button>(); } }
     AudioSource audioSource { get { return GetComponent<AudioSource>(); } }
 
+    //dodaj komponent AudioSource i ustaw klip
     void Start () {
         gameObject.AddComponent<AudioSource>();
         audioSource.clip = sound;
         audioSource.playOnAwake = false;
 
-        button.onClick.AddListener(() => PlaySound());
+        //dodaj event listener onClick na metode PlaySound
+        button.onClick.AddListener(PlaySound);
 	}
 
     public void PlaySound()
