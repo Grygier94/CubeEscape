@@ -1,12 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
+using GooglePlayGames;
+using UnityEngine.SocialPlatforms;
 
 public class MenuManager : MonoBehaviour {
 
     bool exitConfirmed;
 
-    // Use this for initialization
     void Start () {
+        PlayGamesPlatform.DebugLogEnabled = true;
+        PlayGamesPlatform.Activate();
+
+        Social.localUser.Authenticate((bool success) => {
+        });
         SaveLoadData.Load();
 	}
 
@@ -23,5 +29,35 @@ public class MenuManager : MonoBehaviour {
 
         if (Input.touchCount > 0 && exitConfirmed)
             exitConfirmed = false;
+    }
+    
+    public void ShowAchievements()
+    {
+        if (Social.localUser.authenticated)
+            Social.ShowAchievementsUI();
+        else
+        {
+            Social.localUser.Authenticate(null);           
+        }
+    }
+
+    public void ShowLeaderboards()
+    {
+        if (Social.localUser.authenticated)
+            PlayGamesPlatform.Instance.ShowLeaderboardUI(GPGSIds.leaderboard_highscores);
+        else
+        {
+            Social.localUser.Authenticate((bool success) =>
+            {
+                if (success)
+                {
+                    Debug.Log("You've successfully logged in");
+                }
+                else
+                {
+                    Debug.Log("Login failed for some reason");
+                }
+            });
+        }
     }
 }

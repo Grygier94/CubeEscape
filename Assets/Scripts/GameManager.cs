@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 
     public static int score;
     public static int bestScore;
+    public static int totalPlays;
     public Text scoreText;
     public Text bestScoreText;
     public Image scoreBackground;
@@ -94,11 +95,16 @@ public class GameManager : MonoBehaviour
         Destroy(player.GetComponent<Controller>());
         Destroy(mainCamera.GetComponent<CameraFollow>());
         Destroy(instructions);
-        if(score > bestScore)
-        {
+        Social.ReportScore(GameManager.score, GPGSIds.leaderboard_highscores, null);
+        totalPlays++;
+
+        if(totalPlays >= 10)
+            Social.ReportProgress(GPGSIds.achievement_addicted, 100.0f, null);
+
+        if (score > bestScore)
             bestScore = score;
-            SaveLoadData.Save();
-        }
+
+        SaveLoadData.Save();
         bestScoreText.text = string.Format("Best\nScore\n{0}", bestScore);
     }
 

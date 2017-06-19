@@ -68,6 +68,7 @@ public class Controller : MonoBehaviour
             scoreText.text = GameManager.score.ToString();
             isJumping = false;
             isJumpingFar = false;
+            UpdateAchievements();
 
             //Zeruj prędkość
             GetComponent<Rigidbody2D>().velocity = Vector2.zero;
@@ -85,6 +86,25 @@ public class Controller : MonoBehaviour
             GetComponent<Rigidbody2D>().AddForce(new Vector2(-10f, 15f), ForceMode2D.Impulse);
             GetComponent<Rigidbody2D>().AddTorque(10f, ForceMode2D.Impulse);
             GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().GameOver();
+        }
+    }
+
+    void UpdateAchievements()
+    {
+        if (Social.localUser.authenticated)
+        {
+            if (GameManager.score >= 10)
+                Social.ReportProgress(GPGSIds.achievement_first_steps, 100.0f, null);
+            if (GameManager.score >= 25)
+                Social.ReportProgress(GPGSIds.achievement_getting_better, 100.0f, null);
+            if (GameManager.score >= 50)
+                Social.ReportProgress(GPGSIds.achievement_not_bad, 100.0f, null);
+            if (GameManager.score >= 150)
+                Social.ReportProgress(GPGSIds.achievement_unstoppable, 100.0f, null);
+            if (GameManager.score >= 300)
+                Social.ReportProgress(GPGSIds.achievement_cube_master, 100.0f, null);
+            if (GameManager.score >= 500)
+                Social.ReportProgress(GPGSIds.achievement_escaped, 100.0f, null);
         }
     }
 }
