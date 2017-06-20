@@ -11,8 +11,7 @@ public class MenuManager : MonoBehaviour {
         PlayGamesPlatform.DebugLogEnabled = true;
         PlayGamesPlatform.Activate();
 
-        Social.localUser.Authenticate((bool success) => {
-        });
+        Social.localUser.Authenticate(null);
         SaveLoadData.Load();
 	}
 
@@ -47,17 +46,7 @@ public class MenuManager : MonoBehaviour {
             PlayGamesPlatform.Instance.ShowLeaderboardUI(GPGSIds.leaderboard_highscores);
         else
         {
-            Social.localUser.Authenticate((bool success) =>
-            {
-                if (success)
-                {
-                    Debug.Log("You've successfully logged in");
-                }
-                else
-                {
-                    Debug.Log("Login failed for some reason");
-                }
-            });
+            Social.localUser.Authenticate(null);
         }
     }
 }
