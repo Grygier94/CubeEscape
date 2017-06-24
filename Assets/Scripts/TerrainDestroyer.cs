@@ -13,11 +13,7 @@ public class TerrainDestroyer : MonoBehaviour
         SetLevel();
 
         if (timeToDestroy <= 0 && GetComponent<Rigidbody2D>().isKinematic)
-        {
-            GetComponent<Rigidbody2D>().isKinematic = false;
-            Destroy(GetComponent<BoxCollider2D>());
-            GetComponent<SpriteRenderer>().sprite = destroyedCube;
-        }
+            DestroyPieceOfFloor();
 
         if (transform.position.y < -5.5f)
             Destroy(gameObject);
@@ -30,6 +26,19 @@ public class TerrainDestroyer : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
             touched = true;
+    }
+
+    void OnCollisionExit2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "Player")
+            DestroyPieceOfFloor();
+    }
+
+    void DestroyPieceOfFloor()
+    {
+        GetComponent<Rigidbody2D>().isKinematic = false;
+        Destroy(GetComponent<BoxCollider2D>());
+        GetComponent<SpriteRenderer>().sprite = destroyedCube;
     }
 
     void SetLevel()
