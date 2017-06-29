@@ -8,4 +8,4 @@ Features:
 - leaderboards
 - achievements
 
-Game is available at [Google Play](https://play.google.com/store/apps/details?id=com.grygier.CubeEscape)
+Game is available at <a href="https://play.google.com/store/apps/details?id=com.grygier.CubeEscape" title="Cube Escape" target="_blank"> Google Play</a>
